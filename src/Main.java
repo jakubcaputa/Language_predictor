@@ -33,6 +33,18 @@ public class Main {
                             System.out.println("Waiting for URL:");
                             scan = new Scanner(System.in);
                             url = scan.nextLine();
+                            Language_model polish_model = new Language_model();
+                            polish_model.Parse(url);
+                            polish_model.Train_unigram();
+                            polish_model.Train_bigram();
+                            polish_model.Train_bigram_words();
+                            for(Bigram k: polish_model.getBigram_word()){
+                                System.out.print(k.getFirst_word());
+                                System.out.print(" ");
+                                System.out.println(k.getSecond_word());
+
+                            }
+
 
                             break;
                         case 2:
