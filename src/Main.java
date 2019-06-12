@@ -84,24 +84,75 @@ public class Main {
                     System.out.println("Waiting for URL in order to recognize using unigram:");
                     scan = new Scanner(System.in);
                     url = scan.nextLine();
-                    String language = Language_recognizer.check_language(polish_model,english_model,german_model,url);
+                    String language = Language_recognizer.check_language_unigram(polish_model,english_model,german_model,url);
                     System.out.println(language);
 
                     break;
                 case 3:
 
-                    System.out.println("Waiting for URL5:");
+                    System.out.println("Waiting for URL in order to recognize using bigram:");
                     scan = new Scanner(System.in);
                     url = scan.nextLine();
+                    String language2 = Language_recognizer.check_language_bigram(polish_model,english_model,german_model,url);
+                    System.out.println(language2);
+
                     break;
 
                 case 4:
+                    System.out.println("Choose a language you want to use:");
+                    System.out.println("1. Polish");
+                    System.out.println("2. English");
+                    System.out.println("3. German");
+                    scan = new Scanner(System.in);
+                switch(scan.nextInt()) {
+                    case 1:
+                        System.out.println("Your sentence: ");
+                        System.out.println("Waiting for polish word:");
+                        scan = new Scanner(System.in);
+                        String current_word = scan.next();
+                        String[] predicted_words=Language_predictor.predict(current_word,polish_model.getBigram_word());
+                        System.out.println("Which word you want to choose?");
+                        int p = 1;
+                        for(String k: predicted_words){
+                            System.out.print(p);
+                            System.out.print(". ");
+                            System.out.println(k);
+                            p++;
+                        }
+                        break;
+                    case 2:
+                        System.out.println("Waiting for english word");
+                        scan = new Scanner(System.in);
+                        current_word = scan.next();
+                        predicted_words=Language_predictor.predict(current_word,english_model.getBigram_word());
+                        System.out.println("Which word you want to choose?");
+                        p = 1;
+                        for(String k: predicted_words){
+                            System.out.print(p);
+                            System.out.print(". ");
+                            System.out.println(k);
+                            p++;
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Waiting for german word");
+                        scan = new Scanner(System.in);
+                        current_word = scan.next();
+                        predicted_words=Language_predictor.predict(current_word,german_model.getBigram_word());
+                        System.out.println("Which word you want to choose?");
+                        p = 1;
+                        for(String k: predicted_words){
+                            System.out.print(p);
+                            System.out.print(". ");
+                            System.out.println(k);
+                            p++;
+                        }
+                        break;
 
-                    System.out.println("Waiting for a word:");
-                    break;
-
+                }
                 case 5:
                     program_loop = false;
+                    break;
             }
 
 
