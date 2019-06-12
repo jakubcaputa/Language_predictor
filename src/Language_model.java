@@ -89,6 +89,9 @@ public class Language_model {
         bigram_word = bigram_words;
     }
 
+
+
+
     public LinkedHashMap<Integer, Float> getUnigrams() {
         return unigrams;
     }

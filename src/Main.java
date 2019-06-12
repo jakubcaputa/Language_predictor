@@ -46,9 +46,7 @@ public class Main {
                                 System.out.print(k.getFirst_word());
                                 System.out.print(" ");
                                 System.out.println(k.getSecond_word());
-
                             }
-
 
                             break;
                         case 2:
@@ -83,9 +81,12 @@ public class Main {
                     }break;
                 case 2:
 
-                    System.out.println("Waiting for URL4:");
+                    System.out.println("Waiting for URL in order to recognize using unigram:");
                     scan = new Scanner(System.in);
                     url = scan.nextLine();
+                    String language = Language_recognizer.check_language(polish_model,english_model,german_model,url);
+                    System.out.println(language);
+
                     break;
                 case 3:
 
