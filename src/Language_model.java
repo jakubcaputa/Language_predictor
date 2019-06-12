@@ -15,7 +15,7 @@ public class Language_model {
     public void Parse(String url) throws Exception{
         url = url.substring(0,url.length()-1);
         Document doc = Jsoup.connect(url).get();
-        text = text + doc.body().text().toLowerCase();
+        text += doc.body().text().toLowerCase();
     }
 
     public void Train_unigram(){

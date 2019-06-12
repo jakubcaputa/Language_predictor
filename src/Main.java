@@ -10,6 +10,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         boolean program_loop = true;
+        Language_model polish_model = new Language_model();
+        Language_model english_model = new Language_model();
+        Language_model german_model = new Language_model();
+
 
         while (program_loop) {
 
@@ -30,10 +34,10 @@ public class Main {
                     scan = new Scanner(System.in);
                     switch(scan.nextInt()){
                         case 1:
-                            System.out.println("Waiting for URL:");
+                            System.out.println("Waiting for polish URL:");
                             scan = new Scanner(System.in);
                             url = scan.nextLine();
-                            Language_model polish_model = new Language_model();
+
                             polish_model.Parse(url);
                             polish_model.Train_unigram();
                             polish_model.Train_bigram();
@@ -48,25 +52,44 @@ public class Main {
 
                             break;
                         case 2:
-                            System.out.println("Waiting for URL:");
+                            System.out.println("Waiting for english URL:");
                             scan = new Scanner(System.in);
                             url = scan.nextLine();
+
+                            english_model.Parse(url);
+                            english_model.Train_unigram();
+                            english_model.Train_bigram();
+                            english_model.Train_bigram_words();
+                            for(Bigram k: english_model.getBigram_word()){
+                                System.out.print(k.getFirst_word());
+                                System.out.print(" ");
+                                System.out.println(k.getSecond_word());
+                            }
                             break;
                         case 3:
-                            System.out.println("Waiting for URL:");
+                            System.out.println("Waiting for german URL:");
                             scan = new Scanner(System.in);
                             url = scan.nextLine();
-                            break;
-                    }
+
+                            german_model.Parse(url);
+                            german_model.Train_unigram();
+                            german_model.Train_bigram();
+                            german_model.Train_bigram_words();
+                            for(Bigram k: german_model.getBigram_word()) {
+                                System.out.print(k.getFirst_word());
+                                System.out.print(" ");
+                                System.out.println(k.getSecond_word());
+                            }
+                    }break;
                 case 2:
 
-                    System.out.println("Waiting for URL:");
+                    System.out.println("Waiting for URL4:");
                     scan = new Scanner(System.in);
                     url = scan.nextLine();
                     break;
                 case 3:
 
-                    System.out.println("Waiting for URL:");
+                    System.out.println("Waiting for URL5:");
                     scan = new Scanner(System.in);
                     url = scan.nextLine();
                     break;
@@ -80,7 +103,7 @@ public class Main {
                     program_loop = false;
             }
 
-            break;
+
         }
     }
 }
